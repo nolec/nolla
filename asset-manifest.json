@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/nolla/static/js/main.ed1c2045.chunk.js",
-    "main.js.map": "/nolla/static/js/main.ed1c2045.chunk.js.map",
+    "main.js": "/nolla/static/js/main.7fd4dab3.chunk.js",
+    "main.js.map": "/nolla/static/js/main.7fd4dab3.chunk.js.map",
     "runtime-main.js": "/nolla/static/js/runtime-main.65104520.js",
     "runtime-main.js.map": "/nolla/static/js/runtime-main.65104520.js.map",
     "static/js/2.8aaf556a.chunk.js": "/nolla/static/js/2.8aaf556a.chunk.js",
     "static/js/2.8aaf556a.chunk.js.map": "/nolla/static/js/2.8aaf556a.chunk.js.map",
     "index.html": "/nolla/index.html",
-    "precache-manifest.bc4ec92dabf688803d47cdd0d5c8a9d5.js": "/nolla/precache-manifest.bc4ec92dabf688803d47cdd0d5c8a9d5.js",
+    "precache-manifest.f3f50879b7a930b8936340fff7de604c.js": "/nolla/precache-manifest.f3f50879b7a930b8936340fff7de604c.js",
     "service-worker.js": "/nolla/service-worker.js",
     "static/js/2.8aaf556a.chunk.js.LICENSE": "/nolla/static/js/2.8aaf556a.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.65104520.js",
     "static/js/2.8aaf556a.chunk.js",
-    "static/js/main.ed1c2045.chunk.js"
+    "static/js/main.7fd4dab3.chunk.js"
   ]
 }
