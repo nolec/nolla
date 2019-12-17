@@ -4,10 +4,12 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
+import cors from "cors";
 //====================================================
 import "./db";
 import userRoute from "./routes/userRoute";
 const app = express();
+app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cookieParser());

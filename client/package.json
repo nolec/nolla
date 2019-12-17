@@ -17,9 +17,13 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
     "styled-reset": "^4.0.8",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "gh-pages": "^2.1.1"
   },
+  "homepage": "https://nohseungrae.github.io/nolla",
   "scripts": {
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
