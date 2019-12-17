@@ -8,6 +8,7 @@ import cors from "cors";
 //====================================================
 import "./db";
 import userRoute from "./routes/userRoute";
+import profileRoute from "./routes/profileRoute";
 const app = express();
 app.use(cors());
 app.use(helmet());
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 //====================================================
 app.use("/api/users", userRoute);
+app.use("/api/profile", profileRoute);
 //====================================================
 const port = process.env.PORT || 5000;
 
