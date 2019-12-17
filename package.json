@@ -4,7 +4,7 @@
   "description": "nolla",
   "main": "app.js",
   "scripts": {
-    "start": "npm run build --prefix client && node ./client/build/server.js",
+    "start": "npm run build --prefix client && node babel-node server/app.js",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "frontend": "npm start --prefix client",
     "backend": "nodemon --exec babel-node server/app.js",
