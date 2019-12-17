@@ -6,6 +6,7 @@ import morgan from "morgan";
 import path from "path";
 //====================================================
 import "./db";
+import userRoute from "./routes/userRoute";
 const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
@@ -20,6 +21,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+//====================================================
+app.use("/api/users", userRoute);
 //====================================================
 const port = process.env.PORT || 5000;
 

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+import { logout } from "../../actions/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = styled.header`
   padding: 40px 0 30px 0;
@@ -61,6 +63,9 @@ const AuthBar = styled.div`
   }
 `;
 export default withRouter(({ location: { pathname } }) => {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  console.log(auth);
   return (
     <Header>
       <Container>
@@ -78,14 +83,32 @@ export default withRouter(({ location: { pathname } }) => {
           </ul>
         </NavBar>
         <AuthBar>
-          <ul>
-            <Li>
-              <Item to="/login">로그인</Item>
-            </Li>
-            <Li>
-              <Item to="/register">회원가입</Item>
-            </Li>
-          </ul>
+          {auth.loading ? null : (
+            <>
+              {auth.isAuthenticated && auth.isAuthenticated ? (
+                <>
+                  <ul>
+                    <Li>
+                      <Item to="/" onClick={() => dispatch(logout())}>
+                        로그아웃
+                      </Item>
+                    </Li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <ul>
+                    <Li>
+                      <Item to="/login">로그인</Item>
+                    </Li>
+                    <Li>
+                      <Item to="/register">회원가입</Item>
+                    </Li>
+                  </ul>
+                </>
+              )}
+            </>
+          )}
         </AuthBar>
       </Container>
     </Header>

@@ -30,7 +30,7 @@ const Hlink = styled(Link)`
   }
 `;
 const LoginBox = styled.div`
-  width: 50%;
+  width: 500px;
   background-color: #fff;
   margin: auto;
   border-radius: 10px;
