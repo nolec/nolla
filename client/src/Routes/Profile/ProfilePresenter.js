@@ -17,7 +17,7 @@ const ProfileBox = styled.div`
 const GridBox = styled.div`
   height: 200vh;
   display: grid;
-  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  grid-template-columns: repeat(4, minmax(auto, 1fr));
   grid-template-rows: 250px repeat(auto-fill, 250px);
   grid-gap: 10px;
   > div:first-child,
