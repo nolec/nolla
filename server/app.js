@@ -8,6 +8,7 @@ import path from "path";
 import "./db";
 import userRoute from "./routes/userRoute";
 import profileRoute from "./routes/profileRoute";
+import videoRoute from "./routes/videoRoute";
 const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //====================================================
 app.use("/api/users", userRoute);
 app.use("/api/profile", profileRoute);
+app.use("/api/video", videoRoute);
 console.log(__dirname);
 // app.use("/nolla", express.static(path.resolve(__dirname, "../client/build")));
 // app.get("*", (req, res) => {

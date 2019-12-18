@@ -115,7 +115,7 @@ userRoute.delete("/delete", auth, async (req, res) => {
     res.status(200).json({ msg: "회원을 탈퇴하였습니다." });
   } catch (error) {
     console.error(error.message);
-    res.status(500).json("Server Error--DELETE");
+    res.status(500).send("Server Error--DELETE");
   }
 });
 export default userRoute;

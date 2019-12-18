@@ -58,8 +58,9 @@ profileRoute.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
+    console.log(errors.array());
     if (!errors.isEmpty()) {
-      res.status(400).json({ msg: errors.array() });
+      res.status(400).json({ Errors: errors.array() });
     }
     const {
       company,
@@ -88,15 +89,21 @@ profileRoute.post(
     if (youtube) profileFields.social.youtube = youtube;
 
     try {
-      const profile = await Profile.findOneAndUpdate(
-        { user: req.user },
-        { $set: profileFields },
-        { new: true, upsert: true }
-      ).populate("user");
+      let profile = await Profile.findById(req.user);
+      if (profile) {
+        profile = await Profile.findByIdAndUpdate(
+          { user: req.user },
+          { $set: profileFields },
+          { new: true }
+        );
+        return res.status(200).json(profile);
+      }
+      profile = await new Profile(profileFields);
+      await profile.save();
       res.status(200).json(profile);
     } catch (error) {
       console.error(error.message);
-      res.status(500).send("Server Error--PROFILE_CU");
+      res.status(500).json("Server Error--PROFILE_CU");
     }
   }
 );
@@ -110,7 +117,7 @@ profileRoute.delete("/delete", auth, async (req, res) => {
     return res.status(200).json({ msg: "프로필이 제거되었습니다." });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Server Error--PROFILE_DELETE");
+    res.status(500).json("Server Error--PROFILE_DELETE");
   }
 });
 
