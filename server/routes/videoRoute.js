@@ -3,7 +3,6 @@ import Video from "../models/Video";
 import auth from "../middlewares/auth";
 import { check, validationResult } from "express-validator";
 import upload from "../middlewares/upload";
-import User from "../models/User";
 
 const videoRoute = express.Router();
 videoRoute.get("/", async (req, res) => {
@@ -13,7 +12,10 @@ videoRoute.get("/", async (req, res) => {
       return res.status(200).json({ msg: "비디오를 찾을 수 없습니다." });
     }
     res.status(200).json(videos);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error--GET_VIDEOS");
+  }
 });
 videoRoute.post(
   "/upload",
