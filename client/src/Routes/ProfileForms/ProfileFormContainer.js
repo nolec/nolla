@@ -26,7 +26,7 @@ const ProfileFormContainer = ({ history }) => {
   } = formData;
 
   const dispatch = useDispatch();
-  const profile = useSelector(state => state.profile);
+  const auth = useSelector(state => state.auth);
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(createProfile(formData, history));
@@ -42,6 +42,7 @@ const ProfileFormContainer = ({ history }) => {
 
   return (
     <ProfileFormPresenter
+      auth={auth}
       {...formData}
       handleChange={handleChange}
       handleSubmit={handleSubmit}

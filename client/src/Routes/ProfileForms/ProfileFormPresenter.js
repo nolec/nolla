@@ -79,7 +79,7 @@ const FormGroup = styled.div`
   justify-content: space-around;
 `;
 const Input = styled.input`
-  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 const Submit = styled.input`
@@ -90,7 +90,7 @@ const Submit = styled.input`
   transform: translate(-50%);
 `;
 const Select = styled.select`
-  margin-bottom: 10px;
+  margin-top: 10px;
   padding: 5px;
   font-size: 1rem;
   line-height: 1.5;
@@ -99,15 +99,20 @@ const Select = styled.select`
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
-
+const Textarea = styled.textarea`
+  margin-top: 10px;
+`;
 const ProfileFormPresenter = ({
+  auth,
   displaySocialInputs,
   toggleSocialInputs,
   handleSubmit,
   handleChange,
   ...formData
 }) => {
-  return (
+  return !auth.isAuthenticated ? (
+    <Redirect to="/" />
+  ) : (
     <Main>
       <Container>
         <Wrapper>
@@ -118,6 +123,7 @@ const ProfileFormPresenter = ({
             </Hbox>
             <Form className="simple-login-container">
               <FormGroup className="form-group">
+                <small className="form-text">현재 숙련도</small>
                 <Select
                   name="status"
                   value={formData.status}
@@ -133,9 +139,11 @@ const ProfileFormPresenter = ({
                   <option value="Intern">인턴</option>
                   <option value="Other">기타</option>
                 </Select>
-                <small className="form-text">현재 숙련도</small>
               </FormGroup>
               <FormGroup className="form-group">
+                <small className="form-text">
+                  현재 일하고 있는 회사를 적어주세요.
+                </small>
                 <Input
                   className="form-control"
                   type="text"
@@ -145,11 +153,11 @@ const ProfileFormPresenter = ({
                   onChange={e => handleChange(e)}
                   required
                 />
-                <small className="form-text">
-                  현재 일하고 있는 회사를 적어주세요.
-                </small>
               </FormGroup>
               <FormGroup className="form-group">
+                <small className="form-text">
+                  현재 일하고 있는 회사의 사이트를 적어주세요.
+                </small>
                 <Input
                   className="form-control"
                   type="text"
@@ -159,11 +167,11 @@ const ProfileFormPresenter = ({
                   onChange={e => handleChange(e)}
                   required
                 />
-                <small className="form-text">
-                  현재 일하고 있는 회사의 사이트를 적어주세요.
-                </small>
               </FormGroup>
               <FormGroup className="form-group">
+                <small className="form-text">
+                  현재 살고있는 지역을 적어주세요.
+                </small>
                 <Input
                   className="form-control"
                   type="text"
@@ -173,11 +181,11 @@ const ProfileFormPresenter = ({
                   onChange={e => handleChange(e)}
                   required
                 />
-                <small className="form-text">
-                  현재 살고있는 지역을 적어주세요.
-                </small>
               </FormGroup>
               <FormGroup className="form-group">
+                <small className="form-text">
+                  콤마로 구분해서 적어주세요. (ex : html, css,)
+                </small>
                 <Input
                   className="form-control"
                   type="text"
@@ -187,11 +195,11 @@ const ProfileFormPresenter = ({
                   onChange={e => handleChange(e)}
                   required
                 />
-                <small className="form-text">
-                  콤마로 구분해서 적어주세요. (ex : html, css,)
-                </small>
               </FormGroup>
               <FormGroup className="form-group">
+                <small className="form-text">
+                  깃허브 계정이 있다면 적어주세요.
+                </small>
                 <Input
                   className="form-control"
                   type="text"
@@ -201,12 +209,12 @@ const ProfileFormPresenter = ({
                   onChange={e => handleChange(e)}
                   required
                 />
-                <small className="form-text">
-                  깃허브 계정이 있다면 적어주세요.
-                </small>
               </FormGroup>
               <FormGroup className="form-group">
-                <textarea
+                <small className="form-text">
+                  자신에 대한 소개를 해주세요.
+                </small>
+                <Textarea
                   className="form-control"
                   type="text"
                   name="bio"
@@ -214,9 +222,6 @@ const ProfileFormPresenter = ({
                   value={formData.bio}
                   onChange={e => handleChange(e)}
                 />
-                <small className="form-text">
-                  자신에 대한 소개를 해주세요.
-                </small>
               </FormGroup>
               <FormGroup>
                 <button

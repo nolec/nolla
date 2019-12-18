@@ -112,10 +112,10 @@ export default withRouter(({ location: { pathname } }) => {
             </>
           )}
         </AuthBar>
+        {auth.isAuthenticated && pathname !== "/create-profile" ? (
+          <CreateBtn profile={profile} />
+        ) : null}
       </Container>
-      {auth.isAuthenticated && pathname !== "/create-profile" ? (
-        <CreateBtn profile={profile} />
-      ) : null}
     </Header>
   );
 });

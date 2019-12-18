@@ -56,12 +56,12 @@ const IntroBox = styled.div`
     font-weight: 550;
   }
 `;
-const HomePresenter = ({ myProfile, time }) => {
+const HomePresenter = ({ myProfile, auth, time }) => {
   return (
     <Main>
       <Container>
         <Wrapper>
-          {myProfile !== null ? (
+          {myProfile !== null && auth.isAuthenticated ? (
             <ContentBox>
               <Top>
                 <Avatar>
@@ -73,7 +73,15 @@ const HomePresenter = ({ myProfile, time }) => {
                 <p>소속 회사 : {myProfile.company}</p>
               </div>
             </ContentBox>
-          ) : null}
+          ) : (
+            <ContentBox>
+              {!auth.isAuthenticated ? (
+                <p>회원가입을 하여 자신을 소개해주세요.</p>
+              ) : (
+                <p>프로필을 생성하여 주세요.</p>
+              )}
+            </ContentBox>
+          )}
           <IntroBox>
             <h2>NOLLA에 오신 것을 환영합니다.</h2>
             <p>

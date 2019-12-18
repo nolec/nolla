@@ -29,8 +29,15 @@ const HomeConatiner = () => {
 
   const dispatch = useDispatch();
   const myProfile = useSelector(state => state.profile.profile);
+  const auth = useSelector(state => state.auth);
 
-  return <HomePresenter myProfile={myProfile} time={time}></HomePresenter>;
+  return (
+    <HomePresenter
+      auth={auth}
+      myProfile={myProfile}
+      time={time}
+    ></HomePresenter>
+  );
 };
 
 export default HomeConatiner;

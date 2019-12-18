@@ -18,7 +18,7 @@ const GridBox = styled.div`
   height: 200vh;
   display: grid;
   grid-template-columns: repeat(4, minmax(150px, 1fr));
-  grid-template-rows: 250px repeat(auto-fill, 200px);
+  grid-template-rows: 250px repeat(auto-fill, 250px);
   grid-gap: 10px;
   > div:first-child,
   > div:nth-child(2) {
@@ -75,12 +75,12 @@ const ProfilePresenter = ({ profiles }) => {
                     <div>
                       <h4>이름 : {profile.user.name}</h4>
                       <p>
-                        대표 스킬 :
+                        대표 스킬 :{" "}
                         {profile.skills.map((skill, i) => (
                           <span key={i}>
                             {i === profile.skills.length - 1
                               ? skill
-                              : `${skill},`}
+                              : `${skill}, `}
                           </span>
                         ))}
                       </p>
