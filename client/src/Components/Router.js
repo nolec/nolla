@@ -14,7 +14,6 @@ import Register from "../Routes/Register";
 import ProfileForms from "../Routes/ProfileForms";
 import ProfileDetail from "../Routes/ProfileDetail";
 import Footer from "./layouts/Footer";
-import CreateBtn from "./CreateBtn";
 
 export default () => {
   return (
@@ -30,7 +29,6 @@ export default () => {
         <Route path="/create-profile" component={ProfileForms} />
         <Redirect from="/*" to="/" />
       </Switch>
-      <CreateBtn />
       <Footer />
     </Router>
   );

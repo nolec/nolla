@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import HomePresenter from "./HomePresenter";
+import { getMyProfile } from "../../actions/profile";
 
 const HomeConatiner = () => {
   const getTime = () => {
@@ -18,13 +20,17 @@ const HomeConatiner = () => {
     const timer = window.setInterval(() => {
       setTime(getTime());
     }, 1000);
-
+    dispatch(getMyProfile());
     return () => {
       window.clearInterval(timer);
     };
   }, []);
   //-----------------------------시간
-  return <HomePresenter time={time}></HomePresenter>;
+
+  const dispatch = useDispatch();
+  const myProfile = useSelector(state => state.profile.profile);
+
+  return <HomePresenter myProfile={myProfile} time={time}></HomePresenter>;
 };
 
 export default HomeConatiner;

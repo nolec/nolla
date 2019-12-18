@@ -43,55 +43,51 @@ const List = styled.div`
     height: 100%;
     color: #ffffff;
   }
-  div:first-child {
-    width: 120px;
-    height: 120px;
-    border-radius: 100px;
-    border: 1px solid;
-    margin: 10px auto;
-  }
   div:nth-child(2) {
     padding: 10px 0 10px 0;
     font-size: 16px;
     text-align: center;
   }
 `;
-const ProfilePresenter = () => {
+const ImgBox = styled.div`
+  width: 120px;
+  height: 120px;
+  border-radius: 100px;
+  margin: 10px auto;
+  overflow: hidden;
+`;
+const Img = styled.img`
+  width: 100%;
+`;
+const ProfilePresenter = ({ profiles }) => {
   return (
     <Main>
       <Container>
         <Wrapper>
           <ProfileBox>
             <GridBox>
-              <List>
-                <a href="#">
-                  <div>
-                    <img />
-                  </div>
-                  <div>
-                    <h4>이름 : 아무개</h4>
-                    <p>대표 스킬 : HTML, CSS, JavaScript</p>
-                  </div>
-                </a>
-              </List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
+              {profiles.map(profile => (
+                <List key={profile._id}>
+                  <a href="#">
+                    <ImgBox>
+                      <Img src={profile.user.avatar} />
+                    </ImgBox>
+                    <div>
+                      <h4>이름 : {profile.user.name}</h4>
+                      <p>
+                        대표 스킬 :
+                        {profile.skills.map((skill, i) => (
+                          <span key={i}>
+                            {i === profile.skills.length - 1
+                              ? skill
+                              : `${skill},`}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                  </a>
+                </List>
+              ))}
             </GridBox>
           </ProfileBox>
         </Wrapper>

@@ -29,15 +29,18 @@ const Top = styled.div`
 const Avatar = styled.div`
   width: 120px;
   height: 120px;
-  border: 1px solid;
   border-radius: 120px;
   margin: auto;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
 `;
 const IntroBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 70%;
   background-color: #f3d0ff;
   margin: auto;
   border-radius: 5px;
@@ -53,20 +56,24 @@ const IntroBox = styled.div`
     font-weight: 550;
   }
 `;
-const HomePresenter = ({ time }) => {
+const HomePresenter = ({ myProfile, time }) => {
   return (
     <Main>
       <Container>
         <Wrapper>
-          <ContentBox>
-            <Top>
-              <Avatar></Avatar>
-              <p>반갑습니다.</p>
-            </Top>
-            <div>
-              <p>자신을 소개하는 글입니다.</p>
-            </div>
-          </ContentBox>
+          {myProfile !== null ? (
+            <ContentBox>
+              <Top>
+                <Avatar>
+                  <img src={myProfile.user.avatar} />
+                </Avatar>
+                <p>{myProfile.user.name} 님 반갑습니다.</p>
+              </Top>
+              <div>
+                <p>소속 회사 : {myProfile.company}</p>
+              </div>
+            </ContentBox>
+          ) : null}
           <IntroBox>
             <h2>NOLLA에 오신 것을 환영합니다.</h2>
             <p>

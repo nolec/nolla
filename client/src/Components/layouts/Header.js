@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { useDispatch, useSelector } from "react-redux";
+import CreateBtn from "../CreateBtn";
 
 const Header = styled.header`
   padding: 40px 0 30px 0;
@@ -65,6 +66,7 @@ const AuthBar = styled.div`
 export default withRouter(({ location: { pathname } }) => {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
+  const profile = useSelector(state => state.profile);
   console.log(auth);
   return (
     <Header>
@@ -111,6 +113,9 @@ export default withRouter(({ location: { pathname } }) => {
           )}
         </AuthBar>
       </Container>
+      {auth.isAuthenticated && pathname !== "/create-profile" ? (
+        <CreateBtn profile={profile} />
+      ) : null}
     </Header>
   );
 });

@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
+import { loadProfile } from "./profile";
 
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
@@ -17,10 +18,11 @@ export const loadUser = () => async dispatch => {
   }
   try {
     const res = await axios.get("/api/users/auth");
-    dispatch({
+    await dispatch({
       type: USER_LOADED,
       payload: res.data
     });
+    dispatch(loadProfile());
   } catch (error) {
     dispatch({
       type: AUTH_ERROR
@@ -44,9 +46,11 @@ export const register = formData => async dispatch => {
     });
     dispatch(loadUser());
   } catch (error) {
-    const errors = error.response.data.valid;
+    const errors = error.response.data.msg;
     console.log(errors);
-    dispatch(setAlert(errors, "danger"));
+    errors.forEach(error => {
+      dispatch(setAlert(error.msg, "danger"));
+    });
     dispatch({
       type: REGISTER_FAIL
     });
@@ -68,9 +72,12 @@ export const login = (email, password) => async dispatch => {
     });
     dispatch(loadUser());
   } catch (error) {
-    const errors = error.response.data.valid;
-    console.log(errors);
-    dispatch(setAlert(errors, "danger"));
+    const errors = error.response.data.msg;
+    if (errors) {
+      errors.forEach(error => {
+        dispatch(setAlert(error.msg, "danger"));
+      });
+    }
     dispatch({
       type: LOGIN_FAIL
     });

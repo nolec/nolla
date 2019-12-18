@@ -32,7 +32,7 @@ userRoute.post(
     const errors = validationResult(req);
     //유효값 검사
     if (errors.errors.length > 0) {
-      return res.status(400).json({ valid: errors.array() });
+      return res.status(400).json({ msg: errors.array() });
     }
     try {
       const { name, email, password } = req.body;
@@ -80,7 +80,7 @@ userRoute.post(
     const errors = validationResult(req);
     //유효값 검사
     if (errors.errors.length > 0) {
-      return res.status(400).json({ valid: errors.array() });
+      return res.status(400).json({ msg: errors.array() });
     }
     const { email, password } = req.body;
     try {

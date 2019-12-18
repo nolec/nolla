@@ -1,20 +1,45 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileFormPresenter from "./ProfileFormPresenter";
+import { createProfile } from "../../actions/profile";
 
-const ProfileFormContainer = () => {
+const ProfileFormContainer = ({ history }) => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: ""
+    company: "",
+    website: "",
+    location: "",
+    status: "",
+    skills: "",
+    githubusername: "",
+    bio: "",
+    youtube: ""
   });
+  const {
+    company,
+    website,
+    location,
+    status,
+    skills,
+    githubusername,
+    bio,
+    youtube
+  } = formData;
 
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.profile);
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData);
+    dispatch(createProfile(formData, history));
   };
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
+  const handleProfile = e => {
+    console.log(e);
+  };
+
   return (
     <ProfileFormPresenter
       {...formData}

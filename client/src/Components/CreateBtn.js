@@ -21,10 +21,13 @@ const Button = styled(Link)`
   height: 100%;
 `;
 
-const CreateBtn = () => {
+const CreateBtn = ({ profile, location }) => {
+  console.log(location);
   return (
     <ButtonBox>
-      <Button to="/create-profile">프로필 생성</Button>
+      <Button to="/create-profile">
+        {profile.profile === null ? "프로필 생성" : "프로필 수정"}
+      </Button>
     </ButtonBox>
   );
 };

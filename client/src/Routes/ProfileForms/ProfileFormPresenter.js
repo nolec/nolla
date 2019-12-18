@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Link, Redirect } from "react-router-dom";
+import Alert from "../../Components/layouts/Alert";
 
 const Main = styled.main`
   background-color: #fdf7ff;
@@ -30,7 +31,7 @@ const Hlink = styled(Link)`
   }
 `;
 const LoginBox = styled.div`
-  width: 500px;
+  max-width: 500px;
   background-color: #fff;
   margin: auto;
   border-radius: 10px;
@@ -111,6 +112,7 @@ const ProfileFormPresenter = ({
       <Container>
         <Wrapper>
           <LoginBox>
+            <Alert />
             <Hbox>
               <Hlink to="/">NOLLA</Hlink>
             </Hbox>
